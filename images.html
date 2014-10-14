@@ -1,0 +1,59 @@
+
+<html>
+  <head>
+    <script>
+      var imagelist = [
+        {file: "bottle.png",      width: "600", caption: "Bottle"},
+        {file: "chair.png",       width: "600", caption: "Chair"},
+        {file: "dice.png",        width: "600", caption: "Dice"},
+        {file: "wine-glass.png",  width: "600", caption: "Wine Glass"},
+      ];
+      function SetupImages()
+      {
+        var caplist = document.getElementById("captions");
+        var imglist = document.getElementById("full_images");
+
+        for (i = 0; i < imagelist.length; i++)
+        {
+            caplist.innerHTML = caplist.innerHTML + "<li><a href='javascript: SelectImage("
+                + i + ");'>" + imagelist[i].caption + "</a></li>";
+            imglist.innerHTML = imglist.innerHTML + "<div id='full_image_"+ i +"'><img src='images/" + imagelist[i].file + "' width="+ imagelist[i].width +"></img></div>";
+        }
+      }
+      function SelectImage(id)
+      {
+        for (i = 0; i < imagelist.length; i++)
+        {
+          if (i == id) 
+          {
+            document.getElementById("full_image_" + id).style.display = "block";
+          }
+          else
+          {
+            document.getElementById("full_image_" + i).style.display = "none";
+          }
+        }
+      }
+      window.onload = function() {
+        SetupImages();
+        SelectImage(0);
+      };
+    </script>
+    <title>
+    Image Comparison
+    </title>
+  </head>
+
+  <body bgcolor = #ffffff>
+    <table border=0 align="left" cellpadding="5">
+      <tr>
+        <td align = "left" valign="top">
+          <ul id="captions" style="list-style: none; padding-left: 2em; text-indent: -2em;"></ul>
+        </td>
+        <td align = "left" valign="top">
+          <div id="full_images"></div>
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>
